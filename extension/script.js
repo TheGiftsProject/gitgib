@@ -10,10 +10,12 @@ function GitGib(url) {
   this.url = url;
   this.repo = GitGib.getRepoFromUrl(this.url);
   this.dfd = new $.Deferred();
+  if (this.repo) {
 
-  $.when(this.getBasicInfo(), this.getIssuesInfo(), this.getCommitsInfo()).done(function() {
-    me.dfd.resolve();
-  });
+      $.when(this.getBasicInfo(), this.getIssuesInfo(), this.getCommitsInfo()).done(function() {
+        me.dfd.resolve();
+      });
+  }
 }
 
 GitGib.prototype.getLCDRank = function() {
@@ -48,11 +50,14 @@ GitGib.prototype.getLCDRank = function() {
   @returns {user: repo user name, repo: the name of the repo, errors: array of parsing erros}
 */
 GitGib.getRepoFromUrl = function getRepoFromUrl(url) {
-  var info = $.url(url),
-      user = info.segment(1),
-      name = info.segment(2);
+  var valid = url.match(/^(https?:\/\/)github\.com\/(.+?)\/(?!.+\.git)(.+)$/);
+  if (valid) {
+      var info = $.url(url),
+          user = info.segment(1),
+          name = info.segment(2);
 
-  return {user: user, name: name};
+      return {user: user, name: name};
+  }
 };
 
 GitGib.prototype.getScore = function() {
@@ -125,10 +130,16 @@ GitGib.prototype.getBasicInfo = function() {
 
 
 $(document).ready(function() {
-  new GitGib("https://github.com/joyent/node").getScore().done(function(result) {
-    console.log(result);
-  });
-  new GitGib("https://github.com/emberjs/ember.js").getScore().done(function(result) {
-    console.log(result);
-  });
+    $("a[href*='github.com']").each(function() {
+        var anchor = $(this);
+        new GitGib(anchor.prop("href")).getScore().done(function(result) {
+            anchor.after(result);
+        });
+    });
+  //new GitGib("https://github.com/joyent/node").getScore().done(function(result) {
+    //console.log(result);
+  //});
+  //new GitGib("https://github.com/emberjs/ember.js").getScore().done(function(result) {
+    //console.log(result);
+  //});
 });

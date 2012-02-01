@@ -1,0 +1,15 @@
+{
+    "name": "GitGib",
+    "version": "1.0",
+    "description": "",
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_title": "GitGib"
+    },
+    "background_page": "background.html",
+    "permissions": [
+        "tabs",
+        "https://github.com/api/v2/json/",
+        "<all_urls>"
+    ]
+}
