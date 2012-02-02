@@ -1,11 +1,20 @@
-function GitGib(url) {
+function GitGib(url, weights) {
   var me = this;
-  
-  this.FW = 0.25;   // weight of forks/watchers
-  this.FI = 0.25;   // weight of forks/issues(open)
-  this.LCD = 0.50;  // weight of last commit date
+
+  if (!weights){
+    weights = {
+      FW: 0.25,
+      FI: 0.25,
+      LCD: 0.5
+    };
+  }
+
+  this.weights = weights;
+  // this.FW = weights.FW;   // weight of forks/watchers
+  // this.FI = weights.FI;   // weight of forks/issues(open)
+  // this.LCD = weights.LCD;  // weight of last commit date
   this.MIN_DAY = 1;
-  this.MAX_DAY = 365*2; //three years of inactivity
+  this.MAX_DAY = 30*2; //three years of inactivity
   
   this.url = url;
   this.repo = GitGib.getRepoFromUrl(this.url);
@@ -62,9 +71,9 @@ GitGib.prototype.getScore = function() {
   this.dfd.done(function() {
     var lcdRank = me.getLCDRank();
     // var diff = me.repo.closedIssues.length/(me.repo.openIssues.length+me.repo.closedIssues.length);
-    var fw = me.repo.watchers/(me.repo.watchers+me.repo.forks);
-    var fi = me.repo.forks/(me.repo.openIssues.length+me.repo.forks)||0;
-    defer.resolve(Math.round((lcdRank*0.5+fw*0.25+fi*0.25)*100));
+    var fw = (me.repo.watchers / (me.repo.watchers+me.repo.forks)) || 0; 
+    var fi = me.repo.forks / (me.repo.openIssues.length+me.repo.forks) || 0;
+    defer.resolve(Math.round((lcdRank*me.weights.LCD+fw*me.weights.FW+fi*me.weights.FI)*100));
   });
   return defer.promise();
 };
@@ -113,8 +122,8 @@ GitGib.prototype.getBasicInfo = function() {
       me  = this;
 
   gh.repo(me.repo.user, me.repo.name).show(function (data) {
-      me.repo.forks = data.repository.forks;
-      me.repo.watchers = data.repository.watchers;
+      me.repo.forks = data.repository.forks - 1;
+      me.repo.watchers = data.repository.watchers - 1;
       me.repo.ifFork = data.repository.fork;
       me.repo.pushedAt = data.repository.pushed_at;
       dfd.resolve();
@@ -123,12 +132,34 @@ GitGib.prototype.getBasicInfo = function() {
 };
 
 
+function score(){
+  weights = {
+    FW: $("#fw").val(),
+    FI: $("#fi").val(),
+    LCD: $("#lcd").val()
+  };
+
+  $("ul li a").each(function(){
+    var el = $(this);
+    var href = el.attr('href');
+    new GitGib(href, weights).getScore().done(function(result){
+      el.find('span').remove();
+      el.append($("<span>").text("{" + result + "}"));
+    });
+  });
+}
 
 $(document).ready(function() {
-  new GitGib("https://github.com/joyent/node").getScore().done(function(result) {
-    console.log(result);
-  });
-  new GitGib("https://github.com/emberjs/ember.js").getScore().done(function(result) {
-    console.log(result);
-  });
+  score();
 });
+
+$("form").submit(function() {
+  console.log("?");
+  score();
+  return false;
+});
+
+
+
+
+
