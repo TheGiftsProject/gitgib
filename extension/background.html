@@ -1,0 +1,16 @@
+<html>
+    <script>
+        function inject(tab) {
+            chrome.tabs.executeScript(tab.tabId, { file: "jquery.min.js" });
+            chrome.tabs.executeScript(tab.tabId, { file: "url.js" });
+            chrome.tabs.executeScript(tab.tabId, { file: "githubapi.js" });
+            chrome.tabs.executeScript(tab.tabId, { file: "script.js" });
+        }
+
+        chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+            if (changeInfo.status == "complete") {
+                inject(tab);
+            }
+        });
+    </script>
+</html>

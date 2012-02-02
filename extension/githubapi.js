@@ -28,31 +28,33 @@
     // time in milliseconds. Once the callback is called, it is deleted from the
     // object to prevent memory leaks.
     jsonp = function (url, callback, context) {
-        var id = +new Date,
-        script = document.createElement("script");
+        $.ajax(url, { success: callback, context: context });
 
-        while (gh.__jsonp_callbacks[id] !== undefined)
-            id += Math.random(); // Avoid slight possibility of id clashes.
+        //var id = +new Date,
+        //script = document.createElement("script");
 
-        gh.__jsonp_callbacks[id] = function () {
-            delete gh.__jsonp_callbacks[id];
-            callback.apply(context, arguments);
-        };
+        //while (gh.__jsonp_callbacks[id] !== undefined)
+            //id += Math.random(); // Avoid slight possibility of id clashes.
 
-        var prefix = "?";
-        if (url.indexOf("?") >= 0)
-            prefix = "&";
+        //gh.__jsonp_callbacks[id] = function () {
+            //delete gh.__jsonp_callbacks[id];
+            //callback.apply(context, arguments);
+        //};
 
-        url += prefix + "callback=" + encodeURIComponent("gh.__jsonp_callbacks[" + id + "]");
-        if (authUsername && authToken) {
-            url += "&login=" + authUsername + "&token=" + authToken;
-        }
-        if (authAccessToken) {
-            url += "&access_token=" + authAccessToken;
-        }
-        script.setAttribute("src", apiRoot + url);
+        //var prefix = "?";
+        //if (url.indexOf("?") >= 0)
+            //prefix = "&";
 
-        document.getElementsByTagName('head')[0].appendChild(script);
+        //url += prefix + "callback=" + encodeURIComponent("gh.__jsonp_callbacks[" + id + "]");
+        //if (authUsername && authToken) {
+            //url += "&login=" + authUsername + "&token=" + authToken;
+        //}
+        //if (authAccessToken) {
+            //url += "&access_token=" + authAccessToken;
+        //}
+        //script.setAttribute("src", apiRoot + url);
+
+        //document.getElementsByTagName('head')[0].appendChild(script);
     },
 
     // Send an HTTP POST. Unfortunately, it isn't possible to support a callback

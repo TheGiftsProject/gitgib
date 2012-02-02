@@ -19,10 +19,12 @@ function GitGib(url, weights) {
   this.url = url;
   this.repo = GitGib.getRepoFromUrl(this.url);
   this.dfd = new $.Deferred();
+  if (this.repo) {
 
-  $.when(this.getBasicInfo(), this.getIssuesInfo(), this.getCommitsInfo()).done(function() {
-    me.dfd.resolve();
-  });
+      $.when(this.getBasicInfo(), this.getIssuesInfo(), this.getCommitsInfo()).done(function() {
+        me.dfd.resolve();
+      });
+  }
 }
 
 GitGib.prototype.getLCDRank = function() {
@@ -57,11 +59,14 @@ GitGib.prototype.getLCDRank = function() {
   @returns {user: repo user name, repo: the name of the repo, errors: array of parsing erros}
 */
 GitGib.getRepoFromUrl = function getRepoFromUrl(url) {
-  var info = $.url(url),
-      user = info.segment(1),
-      name = info.segment(2);
+  var valid = url.match(/^(https?:\/\/)github\.com\/(.+?)\/(?!.+\.git)(.+)$/);
+  if (valid) {
+      var info = $.url(url),
+          user = info.segment(1),
+          name = info.segment(2);
 
-  return {user: user, name: name};
+      return {user: user, name: name};
+  }
 };
 
 GitGib.prototype.getScore = function() {
@@ -139,6 +144,7 @@ function score(){
     LCD: $("#lcd").val()
   };
 
+
   $("ul li a").each(function(){
     var el = $(this);
     var href = el.attr('href');
@@ -163,3 +169,13 @@ $("form").submit(function() {
 
 
 
+
+// $(document).ready(function() {
+//     $("a[href*='github.com']").each(function() {
+//         var anchor = $(this);
+//         new GitGib(anchor.prop("href")).getScore().done(function(result) {
+//             alert(result);
+//             anchor.after(result);
+//         });
+//     });
+// });
