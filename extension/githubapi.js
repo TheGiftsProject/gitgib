@@ -28,33 +28,7 @@
     // time in milliseconds. Once the callback is called, it is deleted from the
     // object to prevent memory leaks.
     jsonp = function (url, callback, context) {
-        $.ajax(url, { success: callback, context: context });
-
-        //var id = +new Date,
-        //script = document.createElement("script");
-
-        //while (gh.__jsonp_callbacks[id] !== undefined)
-            //id += Math.random(); // Avoid slight possibility of id clashes.
-
-        //gh.__jsonp_callbacks[id] = function () {
-            //delete gh.__jsonp_callbacks[id];
-            //callback.apply(context, arguments);
-        //};
-
-        //var prefix = "?";
-        //if (url.indexOf("?") >= 0)
-            //prefix = "&";
-
-        //url += prefix + "callback=" + encodeURIComponent("gh.__jsonp_callbacks[" + id + "]");
-        //if (authUsername && authToken) {
-            //url += "&login=" + authUsername + "&token=" + authToken;
-        //}
-        //if (authAccessToken) {
-            //url += "&access_token=" + authAccessToken;
-        //}
-        //script.setAttribute("src", apiRoot + url);
-
-        //document.getElementsByTagName('head')[0].appendChild(script);
+        $.ajax(apiRoot + url, { dataType: 'jsonp', success: callback, context: context });
     },
 
     // Send an HTTP POST. Unfortunately, it isn't possible to support a callback
