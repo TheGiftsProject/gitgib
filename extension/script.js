@@ -1,19 +1,30 @@
-function GitGib(url) {
-    var me = this;
+function GitGib(url, weights) {
+  var me = this;
 
-    this.FW = 0.25; // weight of forks/watchers
-    this.FI = 0.25; // weight of forks/issues(open)
-    this.LCD = 0.50; // weight of last commit date
-    this.MIN_DAY = 1;
-    this.MAX_DAY = 365 * 2; //three years of inactivity
-    this.url = url;
-    this.repo = GitGib.getRepoFromUrl(this.url);
-    this.dfd = new $.Deferred();
-    if (this.repo) {
-        $.when(this.getBasicInfo(), this.getIssuesInfo(), this.getCommitsInfo()).done(function() {
-            me.dfd.resolve();
-        });
-    }
+  if (!weights){
+    weights = {
+      FW: 0.25,
+      FI: 0.25,
+      LCD: 0.5
+    };
+  }
+
+  this.weights = weights;
+  // this.FW = weights.FW;   // weight of forks/watchers
+  // this.FI = weights.FI;   // weight of forks/issues(open)
+  // this.LCD = weights.LCD;  // weight of last commit date
+  this.MIN_DAY = 1;
+  this.MAX_DAY = 30*2; //three years of inactivity
+  
+  this.url = url;
+  this.repo = GitGib.getRepoFromUrl(this.url);
+  this.dfd = new $.Deferred();
+  if (this.repo) {
+
+      $.when(this.getBasicInfo(), this.getIssuesInfo(), this.getCommitsInfo()).done(function() {
+        me.dfd.resolve();
+      });
+  }
 }
 
 GitGib.prototype.getLCDRank = function() {
@@ -64,17 +75,17 @@ GitGib.getRepoFromUrl = function getRepoFromUrl(url) {
 };
 
 GitGib.prototype.getScore = function() {
-    var me = this;
-    var defer = new $.Deferred();
+  var me = this;
+  var defer = new $.Deferred();
 
-    this.dfd.done(function() {
-        var lcdRank = me.getLCDRank();
-        // var diff = me.repo.closedIssues.length/(me.repo.openIssues.length+me.repo.closedIssues.length);
-        var fw = me.repo.watchers / (me.repo.watchers + me.repo.forks);
-        var fi = me.repo.forks / (me.repo.openIssues.length + me.repo.forks) || 0;
-        defer.resolve(Math.round((lcdRank * 0.5 + fw * 0.25 + fi * 0.25) * 100));
-    });
-    return defer.promise();
+  this.dfd.done(function() {
+    var lcdRank = me.getLCDRank();
+    // var diff = me.repo.closedIssues.length/(me.repo.openIssues.length+me.repo.closedIssues.length);
+    var fw = (me.repo.watchers / (me.repo.watchers+me.repo.forks)) || 0; 
+    var fi = me.repo.forks / (me.repo.openIssues.length+me.repo.forks) || 0;
+    defer.resolve(Math.round((lcdRank*me.weights.LCD+fw*me.weights.FW+fi*me.weights.FI)*100));
+  });
+  return defer.promise();
 };
 
 GitGib.prototype.getCommitsInfo = function() {
@@ -121,19 +132,47 @@ GitGib.prototype.getIssuesInfo = function() {
 };
 
 GitGib.prototype.getBasicInfo = function() {
-    var dfd = new jQuery.Deferred(),
-    me = this;
+  var dfd = new jQuery.Deferred(),
+      me  = this;
 
-    gh.repo(me.repo.user, me.repo.name).show(function(data) {
-        me.repo.forks = data.repository.forks;
-        me.repo.watchers = data.repository.watchers;
-        me.repo.ifFork = data.repository.fork;
-        me.repo.pushedAt = data.repository.pushed_at;
-        console.info('done basic info');
-        dfd.resolve();
-    });
-    return dfd.promise();
+  gh.repo(me.repo.user, me.repo.name).show(function (data) {
+      me.repo.forks = data.repository.forks - 1;
+      me.repo.watchers = data.repository.watchers - 1;
+      me.repo.ifFork = data.repository.fork;
+      me.repo.pushedAt = data.repository.pushed_at;
+      dfd.resolve();
+   });
+   return dfd.promise();
 };
+
+
+function score(){
+  weights = {
+    FW: $("#fw").val(),
+    FI: $("#fi").val(),
+    LCD: $("#lcd").val()
+  };
+
+
+  $("ul li a").each(function(){
+    var el = $(this);
+    var href = el.attr('href');
+    new GitGib(href, weights).getScore().done(function(result){
+      el.find('span').remove();
+      el.append($("<span>").text("{" + result + "}"));
+    });
+  });
+}
+
+$(document).ready(function() {
+  score();
+});
+
+$("form").submit(function() {
+  console.log("?");
+  score();
+  return false;
+});
 
 $(document).ready(function() {
     $("a[href*='github.com']").each(function() {
@@ -143,11 +182,4 @@ $(document).ready(function() {
             anchor.after(result);
         });
     });
-    //new GitGib("https://github.com/joyent/node").getScore().done(function(result) {
-    //console.log(result);
-    //});
-    //new GitGib("https://github.com/emberjs/ember.js").getScore().done(function(result) {
-    //console.log(result);
-    //});
 });
-
