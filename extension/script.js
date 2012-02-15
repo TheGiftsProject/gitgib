@@ -168,7 +168,16 @@ function create_score_fragment(score){
 function calculate_icon_position(score) {
     return ["-32px -32px", "-16px -32px", "-0px -32px",
         "-32px -16px", "-16px -16px", "0px -16px",
-        "-32px 0px", "-16px 0px", "0px 0px"][Math.ceil(score/10)]
+        "-32px 0px", "-16px 0px", "0px 0px"][Math.ceil(score/10)];
+}
+
+function score(url, anchor){
+  var loading = $("<img src='http://www.nzta.govt.nz/traffic/ui/img/loading.gif'/>");
+  anchor.append(loading);
+  new GitGib(url).getScore().done(function(score) {
+    loading.remove();
+    score_github_repository(score, anchor);
+  });
 }
 
 $(document).ready(function() {
@@ -178,4 +187,17 @@ $(document).ready(function() {
             score_github_repository(score, anchor);
         });
     });
+    if (document.location.href.match("github.com")){
+      var el = $("a.js-current-repository");
+      if (el){
+        var url = "https://github.com" + el.attr('href');
+        var anchor = el.parent().parent();
+        var loading = $("<img src='http://www.nzta.govt.nz/traffic/ui/img/loading.gif'/>");
+        anchor.append(loading);
+        new GitGib(url).getScore().done(function(score) {
+            loading.remove();
+            score_github_repository(score, anchor);
+        });
+      }
+    }
 });
