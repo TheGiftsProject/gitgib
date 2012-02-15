@@ -1,16 +1,29 @@
 <html>
-    <script>
-        function inject(tab) {
-            chrome.tabs.executeScript(tab.tabId, { file: "jquery.min.js" });
-            chrome.tabs.executeScript(tab.tabId, { file: "url.js" });
-            chrome.tabs.executeScript(tab.tabId, { file: "githubapi.js" });
-            chrome.tabs.executeScript(tab.tabId, { file: "script.js" });
-        }
+    <head>
+        <script src="jquery.min.js" type="text/javascript"></script>
+        <script>
+            var finishedScript;
+            var injectCode = '';
 
-        chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-            if (changeInfo.status == "complete") {
-                inject(tab);
+            function inject(tab) {
+                chrome.tabs.executeScript(tab.tabId, { code: injectCode });
             }
-        });
-    </script>
+
+            $.when($.ajax("jquery.min.js", { type: "text" }),
+                   $.ajax("url.js", { type: "text" }),
+                   $.ajax("githubapi.js", { type: "text" }),
+                   $.ajax("script.js", { type: "text" })).done( function(jquery, url, githubapi, script) {
+                       finishedScript = jquery[0] + url[0] + githubapi[0] + script[0];
+                       injectCode += "var blarg = document.createElement('script');";
+                       injectCode += "blarg.innerHTML = unescape('" + escape(finishedScript) + "');";
+                       injectCode += "document.body.appendChild(blarg);";
+                   });
+
+            chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+                if (changeInfo.status == "complete") {
+                    inject(tab);
+                }
+            });
+        </script>
+    </head>
 </html>
