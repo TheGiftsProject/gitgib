@@ -178,7 +178,6 @@ $(document).ready(function() {
     $("a[href*='github.com']").each(function() {
         var anchor = $(this);
         new GitGib(anchor.prop("href")).getScore().done(function(result) {
-            alert(result);
             anchor.after(result);
         });
     });
