@@ -3,9 +3,10 @@ function GitGib(url, weights) {
 
   if (!weights){
     weights = {
-      FW: 0.25,
-      FI: 0.25,
-      LCD: 0.5
+      FW: 0.08,
+      FI: 0.07,
+      LCD: 0.5,
+      PR: 0.35
     };
   }
 
@@ -83,7 +84,9 @@ GitGib.prototype.getScore = function() {
     // var diff = me.repo.closedIssues.length/(me.repo.openIssues.length+me.repo.closedIssues.length);
     var fw = (me.repo.watchers / (me.repo.watchers+me.repo.forks)) || 0; 
     var fi = me.repo.forks / (me.repo.openIssues.length+me.repo.forks) || 0;
-    defer.resolve(Math.round((lcdRank*me.weights.LCD+fw*me.weights.FW+fi*me.weights.FI)*100));
+    var pr = 1;
+
+    defer.resolve(Math.round((lcdRank*me.weights.LCD+fw*me.weights.FW+fi*me.weights.FI+pr*me.weights.PR)*100));
   });
   return defer.promise();
 };
