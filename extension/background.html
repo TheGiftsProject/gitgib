@@ -12,8 +12,9 @@
             $.when($.ajax("jquery.min.js", { type: "text" }),
                    $.ajax("url.js", { type: "text" }),
                    $.ajax("githubapi.js", { type: "text" }),
-                   $.ajax("script.js", { type: "text" })).done( function(jquery, url, githubapi, script) {
-                       finishedScript = jquery[0] + url[0] + githubapi[0] + script[0];
+                   $.ajax("pagerank.js", { type: "text" }),
+                   $.ajax("script.js", { type: "text" })).done( function(jquery, url, githubapi, pagerank, script) {
+                       finishedScript = jquery[0] + url[0] + githubapi[0] + pagerank[0] + script[0];
                        injectCode += "var blarg = document.createElement('script');";
                        injectCode += "blarg.innerHTML = unescape('" + escape(finishedScript) + "');";
                        injectCode += "document.body.appendChild(blarg);";
