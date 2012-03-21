@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc455c48-f067-4db4-8a72-c036ccfcd7e9" name="Default" comment="removing page rand">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/server/Procfile" afterPath="$PROJECT_DIR$/Procfile" />
     </list>
     <ignored path="gitgib.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,9 +43,9 @@
         </entry>
       </file>
       <file leaf-file-name="Procfile" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/Procfile">
+        <entry file="file://$PROJECT_DIR$/Procfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="22" selection-start="42" selection-end="42" vertical-scroll-proportion="0.017301038">
+            <state line="1" column="16" selection-start="43" selection-end="43" vertical-scroll-proportion="0.017301038">
               <folding />
             </state>
           </provider>
@@ -132,6 +132,7 @@
         <option value="$PROJECT_DIR$/server/.gitignore" />
         <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/server/Procfile" />
+        <option value="$PROJECT_DIR$/Procfile" />
       </list>
     </option>
   </component>
@@ -193,10 +194,6 @@
               <option name="myItemId" value="gitgib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -205,6 +202,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="gitgib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -218,6 +219,11 @@
     <property name="options.lastSelected" value="preferences.keymap" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="RSpecRunConfigurationType" factoryName="RSpec">
@@ -477,9 +483,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/Procfile">
+    <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="22" selection-start="42" selection-end="42" vertical-scroll-proportion="0.017301038">
+        <state line="1" column="16" selection-start="43" selection-end="43" vertical-scroll-proportion="0.017301038">
           <folding />
         </state>
       </provider>
