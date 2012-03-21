@@ -6,6 +6,11 @@
            	"48": "icon48.png",
           	"128": "icon128.png" },
     "background_page": "background.html",
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["jquery.min.js", "gitgib_ui.js", "inject.js"],
+        "run_at": "document_start"
+    }],
     "permissions": [
         "tabs",
         "https://github.com/api/v2/json/",

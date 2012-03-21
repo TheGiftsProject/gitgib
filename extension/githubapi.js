@@ -27,8 +27,8 @@
     // `gh.__jsonp_callbacks` object with a "unique" `id` that is the current
     // time in milliseconds. Once the callback is called, it is deleted from the
     // object to prevent memory leaks.
-    jsonp = function (url, callback, context) {
-        $.ajax(apiRoot + url, { dataType: 'jsonp', success: callback, context: context });
+    jsonp = function (url, context) {
+        return $.ajax(apiRoot + url, {context: context});
     },
 
     // Send an HTTP POST. Unfortunately, it isn't possible to support a callback
@@ -136,9 +136,8 @@
     //    gh.user("fitzgen").show(function (data) {
     //        console.log(data.user);
     //    });
-    gh.user.prototype.show = function (callback, context) {
-        jsonp("user/show/" + this.username, callback, context);
-        return this;
+    gh.user.prototype.show = function (context) {
+        return jsonp("user/show/" + this.username, context);
     };
 
     // Update a user's info. You must be authenticated as this user for this to
@@ -331,9 +330,8 @@
     //     gh.repo("schacon", "grit").show(function (data) {
     //         console.log(data.repository.description);
     //     });
-    gh.repo.prototype.show = function (callback, context) {
-        jsonp("repos/show/" + this.user + "/" + this.repo, callback, context);
-        return this;
+    gh.repo.prototype.show = function (context) {
+        return jsonp("repos/show/" + this.user + "/" + this.repo, context);
     };
 
     // Update the information for this repo. Must be authenticated as the
@@ -487,19 +485,14 @@
         this.sha = sha;
     };
 
-    gh.commit.prototype.show = function (callback, context) {
-        jsonp("commits/show/" + this.user + "/" + this.repo + "/" + this.sha,
-              callback,
+    gh.commit.prototype.show = function (context) {
+        return jsonp("commits/show/" + this.user + "/" + this.repo + "/" + this.sha,
               context);
-        return this;
     };
 
     // Get a list of all commits on a repos branch.
-    gh.commit.forBranch = function (user, repo, branch, callback, context) {
-        jsonp("commits/list/" + user + "/" + repo + "/" + branch,
-              callback,
-              context);
-        return this;
+    gh.commit.forBranch = function (user, repo, branch, context) {
+        return jsonp("commits/list/" + user + "/" + repo + "/" + branch, context);
     };
 
     // Get a list of all commits on this path (file or dir).
@@ -521,19 +514,16 @@
     };
 
     // View this issue's info.
-    gh.issue.prototype.show = function (callback, context) {
-        jsonp("issues/show/" + this.user + "/" + this.repo + "/" + this.number,
-              callback,
+    gh.issue.prototype.show = function (context) {
+        return jsonp("issues/show/" + this.user + "/" + this.repo + "/" + this.number,
               context);
-        return this;
     };
 
     // Get a list of all comments on this issue.
     gh.issue.prototype.comments = function (callback, context) {
-        jsonp("issues/comments/" + this.user + "/" + this.repo + "/" + this.number,
+        return jsonp("issues/comments/" + this.user + "/" + this.repo + "/" + this.number,
               callback,
               context);
-        return this;
     };
 
     // Close this issue.
@@ -610,11 +600,8 @@
 
     // Get a list of issues for the given repo. `state` can be "open" or
     // "closed".
-    gh.issue.list = function (user, repo, state, callback, context) {
-        jsonp("issues/list/" + user + "/" + repo + "/" + state,
-              callback,
-              context);
-        return this;
+    gh.issue.list = function (user, repo, state, context) {
+        return jsonp("issues/list/" + user + "/" + repo + "/" + state, context);
     };
 
     // ### Gists
