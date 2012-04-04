@@ -1,14 +1,16 @@
 const FETCH_QUEUE_NAME = "fetchingQueue";
 const UPDATE_QUEUE_NAME = "updateQueueName";
-
 const redis = require("redis");
+
 
 function DB(errorHandler) {
   this.client = getRedis(redis);
   this.client.on("error", errorHandler || console.log);
 }
 
-  // PROTOTYPE
+
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=PROTOTYPE-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 DB.prototype.extend({
   setScore: function (key, score) {
     this.client.exists(key, function (err, exists) {
@@ -19,7 +21,7 @@ DB.prototype.extend({
         markFetched(this.client, key);
       }
     });
-  },
+  }
 
   getScore: function (key, callback) {
     var me = this;
@@ -44,7 +46,9 @@ DB.prototype.extend({
   }
 });
 
-  //PRIVATE
+
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=PRIVATE-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 function getRedis() {
   var client = null;
   if (process.env.REDISTOGO_URL) {
@@ -72,6 +76,8 @@ function markUpdated(client, key) {
   client.zrem(UPDATE_QUEUE_NAME, key);
 }
 
+
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=EXPORTS-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 exports.DB = DB;
 
 

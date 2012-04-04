@@ -16,7 +16,7 @@ function runner() {
 }
 
 function getMoreWork() {
-
+  db.
 }
 
 setInterval(getMoreWork, 1000);
