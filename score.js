@@ -1,14 +1,13 @@
 var repoHelper = require("./repo.js");
 
 const weights = {
-  FW: 0.4,
+  W: 0.45,
   FI: 0.2,
-  LCD: 0.4
+  LCD: 0.25
 };
 
 const MIN_DAY = 2;
 const MAX_DAY = 30 * 2; //three years of inactivity
-const WATCHERS_SCORE_ARRAY = [0,0.1,0.2,0.5,1];
 const WATCHERS_SCALE = 1000;
 
 function getLCDRank(lastCommitDate) {
@@ -56,9 +55,9 @@ function getWatchersScore(watchers) {
 function getScore(username, repo, callback) {
   repoHelper.getInfo(username, repo, function (info) {
     var lcdRank = getLCDRank(info.lastCommitDate);
-    var fw = getWatchersScore(info.watchers) || 0;
+    var watchers = getWatchersScore(info.watchers) || 0;
     var fi = info.forks / (info.openIssues.length + info.forks) || 0;
-    var rank = (lcdRank * weights.LCD + fw * weights.FW + fi * weights.FI);
+    var rank = (lcdRank * weights.LCD + watchers * weights.W + fi * weights.FI);
     var rankInPercents = Math.round(rank * 100);
     if(rankInPercents>100) rankInPercents = 100;
     callback(repo + ": " +rankInPercents);
@@ -76,3 +75,4 @@ getScore("documentcloud", "underscore", console.log);
 getScore("rails", "rails", console.log);
 getScore("JuliaLang", "julia", console.log);
 getScore("jlong", "serve", console.log);
+getScore("mikechambers", "as3corelib", console.log);
