@@ -1,6 +1,6 @@
-var GitHubAPI = require("github").GitHubApi;
+var GitHubApi = require("github");
 
-var github = new GitHubAPI();
+var github = new GitHubApi();
 
 function getInfo(username, repo, callback){
   github.getRepoApi().show(username, repo, function(err, info) {
