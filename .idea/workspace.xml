@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc455c48-f067-4db4-8a72-c036ccfcd7e9" name="Default" comment="removing page rand">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/repo.js" afterPath="$PROJECT_DIR$/repo.js" />
     </list>
     <ignored path="gitgib.iws" />
@@ -63,7 +64,7 @@
       <file leaf-file-name="repo.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/repo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="18" selection-start="83" selection-end="83" vertical-scroll-proportion="0.070544556">
+            <state line="7" column="14" selection-start="147" selection-end="147" vertical-scroll-proportion="0.17007673">
               <folding />
             </state>
           </provider>
@@ -377,11 +378,6 @@
         <state line="16" column="0" selection-start="405" selection-end="481" vertical-scroll-proportion="0.28318584" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/github/lib/github/AbstractApi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="10" selection-start="299" selection-end="299" vertical-scroll-proportion="0.22029702" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ordered_set.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="28" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0" />
@@ -431,7 +427,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/repo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="18" selection-start="83" selection-end="83" vertical-scroll-proportion="0.070544556">
+        <state line="7" column="14" selection-start="147" selection-end="147" vertical-scroll-proportion="0.17007673">
           <folding />
         </state>
       </provider>

@@ -5,7 +5,10 @@ var github = new GitHubApi({
 });
 
 function getInfo(username, repo, callback){
-  github.getRepoApi().show(username, repo, function(err, info) {
+  github.repos.get({
+    user:username,
+    repo: repo
+  }, function(err, info) {
     if(err!==null) {
       callback({error:err});
       return;
@@ -16,7 +19,9 @@ function getInfo(username, repo, callback){
       isFork: info.fork,
       pushedAt: info.pushed_at,
       openIssues: info.open_issues,
-      lastCommitDate: new Date(info.pushed_at)
+      lastCommitDate: new Date(info.pushed_at),
+      description: info.description,
+      homepage: info.homepage
     })
   });
 }
