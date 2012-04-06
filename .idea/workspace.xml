@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc455c48-f067-4db4-8a72-c036ccfcd7e9" name="Default" comment="removing page rand">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.js" afterPath="$PROJECT_DIR$/db.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/repo.js" afterPath="$PROJECT_DIR$/repo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/score.js" afterPath="$PROJECT_DIR$/score.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/worker.js" afterPath="$PROJECT_DIR$/worker.js" />
     </list>
     <ignored path="gitgib.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,10 +42,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="repo.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="db.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="43" column="27" selection-start="1145" selection-end="1145" vertical-scroll-proportion="0.5061881">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="repo.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/repo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="14" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0971867">
+            <state line="4" column="14" selection-start="95" selection-end="95" vertical-scroll-proportion="-2.9230769">
               <folding />
             </state>
           </provider>
@@ -90,9 +95,9 @@
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/score.js" />
-        <option value="$PROJECT_DIR$/db.js" />
         <option value="$PROJECT_DIR$/worker.js" />
         <option value="$PROJECT_DIR$/repo.js" />
+        <option value="$PROJECT_DIR$/db.js" />
       </list>
     </option>
   </component>
@@ -384,16 +389,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db.js">
+    <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="0" selection-start="1784" selection-end="1784" vertical-scroll-proportion="1.3403466">
+        <state line="1" column="22" selection-start="42" selection-end="42" vertical-scroll-proportion="0.023514852">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Procfile">
+    <entry file="file://$PROJECT_DIR$/repo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="22" selection-start="42" selection-end="42" vertical-scroll-proportion="0.023514852">
+        <state line="4" column="14" selection-start="95" selection-end="95" vertical-scroll-proportion="-2.9230769">
           <folding />
         </state>
       </provider>
@@ -410,9 +415,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/repo.js">
+    <entry file="file://$PROJECT_DIR$/db.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="14" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0971867">
+        <state line="43" column="27" selection-start="1145" selection-end="1145" vertical-scroll-proportion="0.5061881">
           <folding />
         </state>
       </provider>

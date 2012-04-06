@@ -41,6 +41,7 @@ DB.prototype = {
   },
 
   getNextProcessingChunk: function (amount, cb) {
+    this.client.flushall();
     amount = amount || 60;
     this.client.zrevrangebyscore(FETCH_QUEUE_NAME, "+inf", 0, "LIMIT", 0, amount, function (err, res) {
       cb(res);
