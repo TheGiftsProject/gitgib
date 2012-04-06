@@ -1,10 +1,11 @@
 var GitHubApi = require("github");
 
-var github = new GitHubApi({
-  version: "3.0.0"
-});
 
 function getInfo(username, repo, callback){
+  console.log("getInfo",username,repo)
+  var github = new GitHubApi({
+    version: "3.0.0"
+  });
   github.repos.get({
     user:username,
     repo: repo
@@ -13,7 +14,7 @@ function getInfo(username, repo, callback){
       callback({error:err});
       return;
     }
-    callback({
+    var res = {
       forks: info.forks - 1,
       watchers: info.watchers - 1,
       isFork: info.fork,
@@ -22,7 +23,9 @@ function getInfo(username, repo, callback){
       lastCommitDate: new Date(info.pushed_at),
       description: info.description,
       homepage: info.homepage
-    })
+    };
+    console.log("response from github ",res);
+    callback(res)
   });
 }
 

@@ -6,8 +6,9 @@ var _ = require('underscore')._;
 var db = new DB();
 var workSet = new OrderedSet();
 
-
-
+var processed = 0;
+var recieved = 0;
+var getMoreWorkTimeout = 0;
 function _getScore(username, repo, callback) {
   score.getScore(username, repo, callback);
 }
@@ -16,7 +17,14 @@ var getScore = _.throttle(_getScore, 1000);
 
 function getMoreWork() {
   function processResults(res) {
-    console.log(res);
+    recieved = res.length;
+    if(recieved === 0) {
+      console.log("recieved 0");
+      getMoreWorkTimeout = setTimeout(getMoreWork, 1000);
+    } else {
+      clearTimeout(getMoreWorkTimeout);
+      console.log("queue",res);
+    }
     res.map(function(item) {
       var name = item.split("/")[0];
       var repo = item.split("/")[1];
@@ -27,13 +35,22 @@ function getMoreWork() {
   }
 
   function gotScore(repo, score) {
-    db.setScore(repo, score);
+    db.setScore(repo, score, function(err, res) {
+      processed += 1;
+      if(processed === recieved) {
+        processed = 0;
+        recieved = 0;
+        console.log("calling getmorework");
+        getMoreWork();
+      }
+    });
+
   }
   db.getNextProcessingChunk(60, processResults);
 }
 
 
 
-setInterval(getMoreWork, 1000); //this should be triggers from redis
+getMoreWork(); //this should be triggers from redis
 
 

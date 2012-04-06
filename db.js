@@ -10,15 +10,15 @@ function DB(errorHandler) {
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=PROTOTYPE-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 DB.prototype = {
-  setScore: function (key, score) {
+  setScore: function (key, score, cb) {
     console.log("setScore",key,score);
     var client = this.client;
     client.exists(key, function (err, exists) {
       client.set(key, score);
       if (exists) {
-        markUpdated(client, key);
+        markUpdated(client, key, cb);
       } else {
-        markFetched(client, key);
+        markFetched(client, key, cb);
       }
     });
   },
@@ -66,12 +66,12 @@ function updateAccessCounter(client, key) {
   client.zincrby(UPDATE_QUEUE_NAME, 1, key);
 }
 
-function markUpdated(client, key) {
-  client.zrem(UPDATE_QUEUE_NAME, key);
+function markUpdated(client, key, cb) {
+  client.zrem(UPDATE_QUEUE_NAME, key, cb);
 }
 
-function markFetched(client, key) {
-  client.zrem(FETCH_QUEUE_NAME, key);
+function markFetched(client, key, cb) {
+  client.zrem(FETCH_QUEUE_NAME, key, cb);
 }
 
 function queueForFetching(client, key) {

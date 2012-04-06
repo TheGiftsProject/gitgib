@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc455c48-f067-4db4-8a72-c036ccfcd7e9" name="Default" comment="removing page rand">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.js" afterPath="$PROJECT_DIR$/db.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/repo.js" afterPath="$PROJECT_DIR$/repo.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/score.js" afterPath="$PROJECT_DIR$/score.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/worker.js" afterPath="$PROJECT_DIR$/worker.js" />
     </list>
@@ -37,43 +40,16 @@
       <file leaf-file-name="worker.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/worker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="7" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0">
+            <state line="30" column="44" selection-start="853" selection-end="853" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="score.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/score.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="13" selection-start="1775" selection-end="1775" vertical-scroll-proportion="0.52996254">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/db.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="10" selection-start="361" selection-end="369" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Procfile" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Procfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="22" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="repo.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="repo.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/repo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="14" selection-start="147" selection-end="147" vertical-scroll-proportion="-5.1153846">
+            <state line="4" column="14" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0971867">
               <folding />
             </state>
           </provider>
@@ -111,12 +87,12 @@
         <option value="$PROJECT_DIR$/server/Procfile" />
         <option value="$PROJECT_DIR$/Procfile" />
         <option value="$PROJECT_DIR$/ordered_set.js" />
-        <option value="$PROJECT_DIR$/db.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/repo.js" />
-        <option value="$PROJECT_DIR$/worker.js" />
         <option value="$PROJECT_DIR$/score.js" />
+        <option value="$PROJECT_DIR$/db.js" />
+        <option value="$PROJECT_DIR$/worker.js" />
+        <option value="$PROJECT_DIR$/repo.js" />
       </list>
     </option>
   </component>
@@ -283,7 +259,7 @@
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814372" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32814372" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814372" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15877438" sideWeight="0.6718563" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -387,28 +363,9 @@
         <state line="16" column="0" selection-start="405" selection-end="481" vertical-scroll-proportion="0.28318584" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ordered_set.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="28" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="1" selection-start="175" selection-end="175" vertical-scroll-proportion="0.21163367">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Procfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="22" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/repo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="14" selection-start="147" selection-end="147" vertical-scroll-proportion="-5.1153846">
           <folding />
         </state>
       </provider>
@@ -420,23 +377,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db.js">
+    <entry file="file://$PROJECT_DIR$/score.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="10" selection-start="361" selection-end="369" vertical-scroll-proportion="0.0">
+        <state line="64" column="34" selection-start="1723" selection-end="1723" vertical-scroll-proportion="0.6535581">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="0" selection-start="1784" selection-end="1784" vertical-scroll-proportion="1.3403466">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="22" selection-start="42" selection-end="42" vertical-scroll-proportion="0.023514852">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ordered_set.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="28" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/worker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="7" selection-start="266" selection-end="266" vertical-scroll-proportion="0.0">
+        <state line="30" column="44" selection-start="853" selection-end="853" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/score.js">
+    <entry file="file://$PROJECT_DIR$/repo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="13" selection-start="1775" selection-end="1775" vertical-scroll-proportion="0.52996254">
+        <state line="4" column="14" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0971867">
           <folding />
         </state>
       </provider>
