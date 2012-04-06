@@ -1,5 +1,5 @@
 var DB = require("./db.js").DB;
-var GitHubAPI = require("./score.js");
+var score = require("./score.js");
 var OrderedSet = require("./ordered_set.js").OrderedSet;
 var _ = require('underscore')._;
 
@@ -9,7 +9,7 @@ var workSet = new OrderedSet();
 
 
 function _getScore(username, repo, callback) {
-  GitHubAPI.getScore(username, repo, callback);
+  score.getScore(username, repo, callback);
 }
 
 var getScore = _.throttle(_getScore, 1000);
