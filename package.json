@@ -4,6 +4,7 @@
     "dependencies": {
         "redis": "",
         "github": "",
-        "underscore": ""
+        "underscore": "",
+        "express": ""
     }
 }
