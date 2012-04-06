@@ -8,27 +8,29 @@ function DB(errorHandler) {
   this.client.on("error", errorHandler || console.log);
 }
 
-
-
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=PROTOTYPE-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-DB.prototype.extend({
+DB.prototype = {
   setScore: function (key, score) {
-    this.client.exists(key, function (err, exists) {
-      this.client.set(key, score);
+    console.log("setScore",key,score);
+    var client = this.client;
+    client.exists(key, function (err, exists) {
+      client.set(key, score);
       if (exists) {
-        markUpdated(this.client, key);
+        markUpdated(client, key);
       } else {
-        markFetched(this.client, key);
+        markFetched(client, key);
       }
     });
-  }
+  },
 
   getScore: function (key, callback) {
+    console.log("getScore",key);
     var me = this;
-
+    var client = this.client;
     function result(err, value) {
       if (value === null) {
-        queueForFetching(this.client, key);
+        queueForFetching(client, key);
+        callback(err, -1);
       } else {
         updateAccessCounter(client, key);
         callback(err, value);
@@ -38,13 +40,13 @@ DB.prototype.extend({
     me.client.get(key, result);
   },
 
-  getNextProcessingChunk: function (amount) {
+  getNextProcessingChunk: function (amount, cb) {
     amount = amount || 60;
     this.client.zrevrangebyscore(FETCH_QUEUE_NAME, "+inf", 0, "LIMIT", 0, amount, function (err, res) {
-      console.dir(res);
+      cb(res);
     });
   }
-});
+};
 
 
 
@@ -64,6 +66,10 @@ function updateAccessCounter(client, key) {
   client.zincrby(UPDATE_QUEUE_NAME, 1, key);
 }
 
+function markUpdated(client, key) {
+  client.zrem(UPDATE_QUEUE_NAME, key);
+}
+
 function markFetched(client, key) {
   client.zrem(FETCH_QUEUE_NAME, key);
 }
@@ -72,16 +78,6 @@ function queueForFetching(client, key) {
   client.zincrby(FETCH_QUEUE_NAME, 1, key);
 }
 
-function markUpdated(client, key) {
-  client.zrem(UPDATE_QUEUE_NAME, key);
-}
-
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=EXPORTS-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 exports.DB = DB;
-
-
-
-
-
-

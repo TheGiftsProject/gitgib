@@ -3,7 +3,7 @@ function OrderedSet() {
   this.hash = {};
 }
 
-OrderedSet.prototype.extend({
+OrderedSet.prototype = {
   exists: function(key) {
     return this.hash[key]
   },
@@ -18,7 +18,7 @@ OrderedSet.prototype.extend({
     delete this.hash[key];
     return value;
   }
-});
+};
 
 
 exports.OrderedSet = OrderedSet;

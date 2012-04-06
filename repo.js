@@ -4,6 +4,10 @@ var github = new GitHubAPI();
 
 function getInfo(username, repo, callback){
   github.getRepoApi().show(username, repo, function(err, info) {
+    if(err!==null) {
+      callback({error:err});
+      return;
+    }
     callback({
       forks: info.forks - 1,
       watchers: info.watchers - 1,

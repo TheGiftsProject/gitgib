@@ -40,6 +40,10 @@ function getLCDRank(lastCommitDate) {
 
 function getScore(username, repo, callback) {
   repoHelper.getInfo(username, repo, function (info) {
+    if(info.error) {
+      callback(-1);
+      return;
+    }
     var lcdRank = getLCDRank(info.lastCommitDate);
     var fw = (info.watchers / (info.watchers + info.forks)) || 0;
     var fi = info.forks / (info.openIssues.length + info.forks) || 0;
