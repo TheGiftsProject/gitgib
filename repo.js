@@ -1,6 +1,8 @@
 var GitHubApi = require("github");
 
-var github = new GitHubApi();
+var github = new GitHubApi({
+  version: "3.0.0"
+});
 
 function getInfo(username, repo, callback){
   github.getRepoApi().show(username, repo, function(err, info) {
