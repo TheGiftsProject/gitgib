@@ -12,31 +12,23 @@
                 var item = queue.shift();
                 var anchor = item.anchor;
                 var gitgib = new GitGib(anchor.url);
-                gitgib.getScore()
-                        .done(function (score) {
-                            item.cb(anchor, score);
-                        }).fail(function () {
-                            console.log("retrying");
-                            queue.push(item);
-                        });
+                gitgib.getScore(function(score) {
+                  item.cb(anchor, score);
+                });
             }
         }
 
 
         chrome.extension.onConnect.addListener(function (port) {
-            var queueCheckInterval = setInterval(checkQueue, 1000);
             console.assert(port.name == "gitgib");
             port.onMessage.addListener(function (msg) {
                 for (i in msg.anchors) {
                     var anchor = msg.anchors[i];
                     getScore(anchor, function (anchor, score) {
-                        try {
-                            port.postMessage({index:anchor.index, score:score});
-                        } catch (ex) {
-                            clearInterval(queueCheckInterval);
-                        }
+                      port.postMessage({index:anchor.index, score:score});
                     });
                 }
+              checkQueue();
             });
         });
 

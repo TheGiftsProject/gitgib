@@ -9,6 +9,7 @@ var workSet = new OrderedSet();
 var processed = 0;
 var recieved = 0;
 var getMoreWorkTimeout = 0;
+
 function _getScore(username, repo, callback) {
   score.getScore(username, repo, callback);
 }
@@ -26,10 +27,9 @@ function getMoreWork() {
       console.log("queue",res);
     }
     res.map(function(item) {
-      var name = item.split("/")[0];
-      var repo = item.split("/")[1];
-      getScore(name, repo, function(score) {
-        gotScore(name+"/"+repo, score);
+      repoInfo = db.keyToHash(item);
+      getScore(repoInfo.name, repoInfo.repo, function(score) {
+        gotScore(db.hashToKey({name:repoInfo.name, repo:repoInfo.repo}), score);
       });
     });
   }

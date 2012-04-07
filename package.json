@@ -5,6 +5,8 @@
         "redis": "",
         "github": "",
         "underscore": "",
-        "express": ""
+        "express": "",
+        "socket.io": "",
+        "jade": ""
     }
 }

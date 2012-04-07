@@ -1,0 +1,6 @@
+script(src='/socket.io/socket.io.js')
+script
+  var socket = io.connect();
+  socket.on('bluehotdog/kabalaocr', function (data) {
+    console.dir(data);
+  });

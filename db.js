@@ -6,6 +6,7 @@ const redis = require("redis");
 function DB(errorHandler) {
   this.client = getRedis(redis);
   this.client.on("error", errorHandler || console.log);
+  this.publisher = getRedis(redis);
 }
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=PROTOTYPE-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -13,16 +14,14 @@ DB.prototype = {
   setScore: function (key, score, cb) {
     console.log("setScore",key,score);
     var client = this.client;
+    var publisher = this.publisher;
     client.exists(key, function (err, exists) {
       client.set(key, score);
-      if (exists) {
-        markUpdated(client, key, cb);
-      } else {
-        markFetched(client, key, cb);
-      }
+      publisher.publish("score", key+"|"+score);
+      markUpdatedOrFetched(client, key, score, exists);
+      cb()
     });
   },
-
   getScore: function (key, callback) {
     console.log("getScore",key);
     var me = this;
@@ -36,8 +35,14 @@ DB.prototype = {
         callback(err, value);
       }
     }
-
     me.client.get(key, result);
+  },
+  keyToHash: function(key) {
+    var temp = key.split("/");
+    return {name:temp[0], repo:temp[1]}
+  },
+  hashToKey: function(hash) {
+    return hash.name+"/"+hash.repo;
   },
 
   getNextProcessingChunk: function (amount, cb) {
@@ -64,15 +69,17 @@ function getRedis() {
   return client;
 }
 function updateAccessCounter(client, key) {
+  console.log("update access counter");
   client.zincrby(UPDATE_QUEUE_NAME, 1, key);
 }
 
-function markUpdated(client, key, cb) {
-  client.zrem(UPDATE_QUEUE_NAME, key, cb);
-}
-
-function markFetched(client, key, cb) {
-  client.zrem(FETCH_QUEUE_NAME, key, cb);
+function markUpdatedOrFetched(client, key, exists, cb) {
+  if(exists) {
+    client.zrem(FETCH_QUEUE_NAME, key, cb);
+  } else {
+    client.zrem(FETCH_QUEUE_NAME, key);
+    client.zrem(UPDATE_QUEUE_NAME, key, cb);
+  }
 }
 
 function queueForFetching(client, key) {
