@@ -2,12 +2,11 @@ var GitHubApi = require("github");
 
 
 function getInfo(username, repo, callback){
-  console.log("getInfo",username,repo)
   var github = new GitHubApi({
     version: "3.0.0"
   });
   github.repos.get({
-    user:username,
+    user: username,
     repo: repo
   }, function(err, info) {
     if(err!==null) {
@@ -24,7 +23,6 @@ function getInfo(username, repo, callback){
       description: info.description,
       homepage: info.homepage
     };
-    console.log("response from github ",res);
     callback(res)
   });
 }

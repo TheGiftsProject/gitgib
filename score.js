@@ -62,7 +62,6 @@ function getScore(username, repo, callback) {
     var fi = info.forks / (info.openIssues.length + info.forks) || 0;
     var rank = (lcdRank * weights.LCD + watchers * weights.W + fi * weights.FI);
     var rankInPercents = Math.round(rank * 100);
-    console.log("rankInPercents", rankInPercents);
     if (rankInPercents>100) {
       rankInPercents = 100;
     }

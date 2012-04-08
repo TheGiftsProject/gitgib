@@ -1,40 +1,29 @@
 <html>
 <head>
-    <script src="jquery.min.js" type="text/javascript"></script>
-    <script src="url.js" type="text/javascript"></script>
-    <script src="githubapi.js" type="text/javascript"></script>
-    <script src="gitgib_base.js" type="text/javascript"></script>
-    <script>
-        var queue = []
-
-        function checkQueue() {
-            if (queue.length > 0) {
-                var item = queue.shift();
-                var anchor = item.anchor;
-                var gitgib = new GitGib(anchor.url);
-                gitgib.getScore(function(score) {
-                  item.cb(anchor, score);
-                });
-            }
+  <script src="jquery.min.js" type="text/javascript"></script>
+  <script src="url.js" type="text/javascript"></script>
+  <script src="gitgib_base.js" type="text/javascript"></script>
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  <script>
+    var gitgib;
+    chrome.extension.onConnect.addListener(function (port) {
+      console.assert(port.name == "gitgib");
+      gitgib = new GitGib();
+      port.onMessage.addListener(function (msg) {
+        for (i in msg.anchors) {
+          var anchor = msg.anchors[i];
+          getScore(anchor, function (anchor, score) {
+            port.postMessage({index: anchor.index, score: score});
+          });
         }
+      });
+    });
 
-
-        chrome.extension.onConnect.addListener(function (port) {
-            console.assert(port.name == "gitgib");
-            port.onMessage.addListener(function (msg) {
-                for (i in msg.anchors) {
-                    var anchor = msg.anchors[i];
-                    getScore(anchor, function (anchor, score) {
-                      port.postMessage({index:anchor.index, score:score});
-                    });
-                }
-              checkQueue();
-            });
-        });
-
-        function getScore(anchor, cb) {
-            queue.push({anchor:anchor, cb:cb});
-        }
-    </script>
+    function getScore(anchor, cb) {
+      gitgib.getScore(anchor.url, function (score) {
+        cb(anchor, score);
+      });
+    }
+  </script>
 </head>
 </html>

@@ -12,7 +12,6 @@ function DB(errorHandler) {
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=PROTOTYPE-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 DB.prototype = {
   setScore: function (key, score, cb) {
-    console.log("setScore",key,score);
     var client = this.client;
     var publisher = this.publisher;
     client.exists(key, function (err, exists) {
@@ -23,7 +22,6 @@ DB.prototype = {
     });
   },
   getScore: function (key, callback) {
-    console.log("getScore",key);
     var me = this;
     var client = this.client;
     function result(err, value) {
@@ -69,7 +67,6 @@ function getRedis() {
   return client;
 }
 function updateAccessCounter(client, key) {
-  console.log("update access counter");
   client.zincrby(UPDATE_QUEUE_NAME, 1, key);
 }
 

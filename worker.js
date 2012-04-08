@@ -9,46 +9,53 @@ var workSet = new OrderedSet();
 var processed = 0;
 var recieved = 0;
 var getMoreWorkTimeout = 0;
+var queue = [];
 
-function _getScore(username, repo, callback) {
-  score.getScore(username, repo, callback);
+setInterval(function() {
+  var item = queue.pop();
+  if(item) {
+    item.function(item.user,item.repo,item.callback);
+  }
+},1000);
+
+function getScore(username, repo, callback) {
+  queue.push({function:score.getScore,user:username,repo:repo,callback:function(score) {
+    callback(username, repo, score);
+  }});
 }
 
-var getScore = _.throttle(_getScore, 1000);
 
 function getMoreWork() {
   function processResults(res) {
     recieved = res.length;
-    if(recieved === 0) {
-      console.log("recieved 0");
+    if (recieved === 0) {
       getMoreWorkTimeout = setTimeout(getMoreWork, 1000);
     } else {
       clearTimeout(getMoreWorkTimeout);
-      console.log("queue",res);
     }
-    res.map(function(item) {
+    res.map(function (item) {
       repoInfo = db.keyToHash(item);
-      getScore(repoInfo.name, repoInfo.repo, function(score) {
-        gotScore(db.hashToKey({name:repoInfo.name, repo:repoInfo.repo}), score);
+      getScore(repoInfo.name, repoInfo.repo, function (user,repo,score) {
+        console.log(user,repo,score);
+        gotScore(db.hashToKey({name: user, repo: repo}), score);
       });
     });
   }
 
   function gotScore(repo, score) {
-    db.setScore(repo, score, function(err, res) {
+    db.setScore(repo, score, function (err, res) {
       processed += 1;
-      if(processed === recieved) {
+      if (processed === recieved) {
         processed = 0;
         recieved = 0;
-        console.log("calling getmorework");
         getMoreWork();
       }
     });
 
   }
+
   db.getNextProcessingChunk(60, processResults);
 }
-
 
 
 getMoreWork(); //this should be triggers from redis

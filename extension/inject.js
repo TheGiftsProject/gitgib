@@ -1,16 +1,17 @@
 $(document).ready(function () {
-    var port = chrome.extension.connect({name: "gitgib"});
-    anchors = $("a[href*='github.com']");
-    var arr = jQuery.makeArray(anchors.map(function(i,v){
-        return {url: v.getAttribute("href"), index: i};
-    }));
-    port.postMessage({anchors: arr});
+  var port = chrome.extension.connect({name: "gitgib"});
+  anchors = $("a[href*='github.com']");
+  var arr = jQuery.makeArray(anchors.map(function (i, v) {
+    return {url: v.getAttribute("href"), index: i};
+  }));
+  port.postMessage({anchors: arr});
 
-    port.onMessage.addListener(function(msg) {
-        var element = anchors[msg.index],
-            score = msg.score;
-        GitGib.UI.scoreGitHubRepository(score, element);
-    });
+  port.onMessage.addListener(function (msg) {
+    var element = anchors[msg.index],
+      score = msg.score;
+    console.log(element,score);
+    GitGib.UI.scoreGitHubRepository(score, element);
+  });
 
 //    if (document.location.href.match("github.com")) {
 //        if ($("a.js-current-repository")) {
