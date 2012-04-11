@@ -11,16 +11,17 @@
       port.onMessage.addListener(function (msg) {
         for (i in msg.anchors) {
           var anchor = msg.anchors[i];
-          getScore(anchor, function (anchor, score) {
-            port.postMessage({index: anchor.index, score: score});
+          var isRepo = msg.isRepo || false;
+          getScore(anchor, isRepo, function (anchor, score, isRepo) {
+            port.postMessage({index: anchor.index, score: score, isRepo: isRepo});
           });
         }
       });
     });
 
-    function getScore(anchor, cb) {
-      gitgib.getScore(anchor.url, function (score) {
-        cb(anchor, score);
+    function getScore(anchor, isRepo, cb) {
+      gitgib.getScore(anchor.url, isRepo, function (score) {
+        cb(anchor, score, isRepo);
       });
     }
   </script>

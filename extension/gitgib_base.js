@@ -2,8 +2,9 @@ function GitGib() {
   this.socket = io.connect("gitgib.herokuapp.com", { port : 80 });
 }
 
-GitGib.prototype.getScore = function (url, cb) {
+GitGib.prototype.getScore = function (url, isRepo, cb) {
   var me = this;
+  console.log(url);
   if(url) {
     $.ajax({
       type: "GET",
@@ -12,11 +13,11 @@ GitGib.prototype.getScore = function (url, cb) {
         if(data) { //We might not pass the whole server url parsing
           if(data.score === "-1" || data.score === -1){
             me.socket.on(data.repoHash, function (score) {
-              cb(score);
+              cb(score, isRepo);
             });
           }
           else {
-            cb(data.score);
+            cb(data.score, isRepo);
           }
         }
       });
