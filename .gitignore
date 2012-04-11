@@ -3,4 +3,6 @@ node_modules
 *.ipr
 *.iws
 /.idea
+idea.iml
+.idea/
 .DS_STORE
