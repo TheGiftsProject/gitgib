@@ -16,10 +16,10 @@ setInterval(function() {
   if(item) {
     item.function(item.user,item.repo,item.callback);
   }
-},1000);
+}, 1000);
 
 function getScore(username, repo, callback) {
-  queue.push({function:score.getScore,user:username,repo:repo,callback:function(score) {
+  queue.push({function:score.getScore, user:username, repo:repo,callback:function(score) {
     callback(username, repo, score);
   }});
 }

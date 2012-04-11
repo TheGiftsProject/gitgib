@@ -1,5 +1,4 @@
-const FETCH_QUEUE_NAME = "fetchingQueue";
-const UPDATE_QUEUE_NAME = "updateQueueName";
+const QUEUE_NAME = "WorkQueue";
 const redis = require("redis");
 
 
@@ -44,10 +43,26 @@ DB.prototype = {
   },
 
   getNextProcessingChunk: function (amount, cb) {
-//    this.client.flushall();
     amount = amount || 60;
-    this.client.zrevrangebyscore(FETCH_QUEUE_NAME, "+inf", 0, "LIMIT", 0, amount, function (err, res) {
-      cb(res);
+    var client = this.client;
+    client.zrangebyscore(QUEUE_NAME, "+inf", 0, "LIMIT", 0, amount, function (err, res) {
+      if(res.length < amount){
+        client.zrevrangebyscore(QUEUE_NAME, "+inf", 0, "LIMIT", 0, amount-res.length, function(err, more_res) {
+
+          var totalWork = more_res.concat(res);
+          if(totalWork.length && res.length===0) {
+            console.log("no work at all but some update work");
+          } else if(totalWork.length) {
+            console.log("got only fetch work");
+          } else {
+            console.log("no work at all");
+          }
+          cb(totalWork);
+        });
+      } else {
+        console.log("got enough fetch work", res);
+        cb(res);
+      }
     });
   }
 };
@@ -67,20 +82,15 @@ function getRedis() {
   return client;
 }
 function updateAccessCounter(client, key) {
-  client.zincrby(UPDATE_QUEUE_NAME, 1, key);
-}
-
-function markUpdatedOrFetched(client, key, exists, cb) {
-  if(exists) {
-    client.zrem(FETCH_QUEUE_NAME, key, cb);
-  } else {
-    client.zrem(FETCH_QUEUE_NAME, key);
-    client.zrem(UPDATE_QUEUE_NAME, key, cb);
-  }
+  client.zincrby(QUEUE_NAME, -1, key); //We are storing the fetch "queue" in reverse order..
 }
 
 function queueForFetching(client, key) {
-  client.zincrby(FETCH_QUEUE_NAME, 1, key);
+  client.zincrby(QUEUE_NAME, 1, key);
+}
+
+function markUpdatedOrFetched(client, key, exists, cb) {
+  client.zrem(QUEUE_NAME, key, cb);
 }
 
 

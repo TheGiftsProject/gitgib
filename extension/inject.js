@@ -1,6 +1,6 @@
 $(document).ready(function () {
   var port = chrome.extension.connect({name: "gitgib"});
-  anchors = $("a[href*='github.com']");
+  var anchors = $("a[href*='github.com']");
   var arr = jQuery.makeArray(anchors.map(function (i, v) {
     return {url: v.getAttribute("href"), index: i};
   }));
@@ -9,7 +9,6 @@ $(document).ready(function () {
   port.onMessage.addListener(function (msg) {
     var element = anchors[msg.index],
       score = msg.score;
-    console.log(element,score);
     GitGib.UI.scoreGitHubRepository(score, element);
   });
 
