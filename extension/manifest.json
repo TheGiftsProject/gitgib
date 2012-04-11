@@ -2,14 +2,16 @@
     "name": "GitGib",
     "version": "1.0",
     "description": "",
-    "icons": {  "16": "icon16.png",
-           	"48": "icon48.png",
-          	"128": "icon128.png" },
-    "background_page": "background.html",
+    "icons": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png" },
+    "background_page": "extension.html",
     "content_scripts": [{
         "matches": ["<all_urls>"],
-        "js": ["jquery.min.js", "gitgib_ui.js", "inject.js"],
+        "js": ["jquery.min.js", "gitgib_ui.js", "page.js"],
         "run_at": "document_start"
+        "css": ["page.css"]
     }],
     "permissions": [
         "tabs",
