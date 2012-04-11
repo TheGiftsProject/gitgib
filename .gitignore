@@ -1,4 +1,4 @@
 node_modules
-.idea/*.xml
-.idea/**/*.*
+.idea/*.*
+.idea/*/*.*
 .DS_STORE
