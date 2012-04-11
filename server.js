@@ -52,6 +52,9 @@ app.get('/getScore', function(req, res) {
 
 app.get('/flushall', function(req, res) {
   db.client.flushall();
+  res.json({
+    done:'done flushing'
+  })
 });
 
 function urlToHash(url) {
