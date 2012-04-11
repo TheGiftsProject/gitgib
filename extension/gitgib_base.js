@@ -1,5 +1,5 @@
 function GitGib() {
-  this.socket = io.connect("localhost", { port : 3000 });
+  this.socket = io.connect("gitgib.herokuapp.com", { port : 80 });
 }
 
 GitGib.prototype.getScore = function (url, cb) {
@@ -7,7 +7,7 @@ GitGib.prototype.getScore = function (url, cb) {
   if(url) {
     $.ajax({
       type: "GET",
-      url: "http://localhost:3000/getScore?url=" + encodeURIComponent(url)
+      url: "http://gitgib.herokuapp.com/getScore?url=" + encodeURIComponent(url)
     }).done(function(data) {
         if(data) { //We might not pass the whole server url parsing
           if(data.score === "-1" || data.score === -1){
