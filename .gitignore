@@ -6,3 +6,4 @@ node_modules
 idea.iml
 .idea/
 .DS_STORE
+extension.pem

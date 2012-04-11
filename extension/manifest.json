@@ -9,9 +9,9 @@
     "background_page": "extension.html",
     "content_scripts": [{
         "matches": ["<all_urls>"],
-        "js": ["jquery.min.js", "gitgib_ui.js", "page.js"],
-        "run_at": "document_start"
-        "css": ["page.css"]
+        "js": ["common/jquery.min.js", "page/gitgib_ui.js", "page/page.js"],
+        "run_at": "document_start",
+        "css": ["page/page.css"]
     }],
     "permissions": [
         "tabs",
