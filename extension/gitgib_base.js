@@ -10,7 +10,7 @@ GitGib.prototype.getScore = function (url, cb) {
       url: "http://localhost:3000/getScore?url=" + encodeURIComponent(url)
     }).done(function(data) {
         if(data) { //We might not pass the whole server url parsing
-          if(data.score === "-1"){
+          if(data.score === "-1" || data.score === -1){
             me.socket.on(data.repoHash, function (score) {
               cb(score);
             });

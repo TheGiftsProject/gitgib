@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc455c48-f067-4db4-8a72-c036ccfcd7e9" name="Default" comment="removing page rand">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extension/gitgib_base.js" afterPath="$PROJECT_DIR$/extension/gitgib_base.js" />
     </list>
     <ignored path="gitgib.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,10 +24,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="gitgib_base.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="gitgib_base.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/extension/gitgib_base.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="29" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0">
+            <state line="12" column="53" selection-start="416" selection-end="416" vertical-scroll-proportion="0.26635513">
               <folding />
             </state>
           </provider>
@@ -42,10 +42,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="server.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="24" selection-start="1313" selection-end="1313" vertical-scroll-proportion="0.6180723">
+            <state line="43" column="3" selection-start="1064" selection-end="1064" vertical-scroll-proportion="-10.961538">
               <folding />
             </state>
           </provider>
@@ -131,9 +131,9 @@
         <option value="$PROJECT_DIR$/worker.js" />
         <option value="$PROJECT_DIR$/score.js" />
         <option value="$PROJECT_DIR$/db.js" />
-        <option value="$PROJECT_DIR$/extension/gitgib_base.js" />
         <option value="$PROJECT_DIR$/extension/background.html" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/extension/gitgib_base.js" />
       </list>
     </option>
   </component>
@@ -474,37 +474,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/extension/gitgib_ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="2" selection-start="155" selection-end="155" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extension/gitgib_base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="29" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/score.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="17" selection-start="1228" selection-end="1236" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/worker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="12" selection-start="1114" selection-end="1114" vertical-scroll-proportion="-11.346154">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extension/background.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="42" selection-start="183" selection-end="183" vertical-scroll-proportion="-2.7142856">
           <folding />
         </state>
       </provider>
@@ -525,7 +497,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="24" selection-start="1313" selection-end="1313" vertical-scroll-proportion="0.6180723">
+        <state line="43" column="3" selection-start="1064" selection-end="1064" vertical-scroll-proportion="-10.961538">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extension/background.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="42" selection-start="183" selection-end="183" vertical-scroll-proportion="-2.7142856">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/score.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="17" selection-start="1228" selection-end="1236" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extension/gitgib_ui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="2" selection-start="155" selection-end="155" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extension/gitgib_base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="53" selection-start="416" selection-end="416" vertical-scroll-proportion="0.26635513">
           <folding />
         </state>
       </provider>
