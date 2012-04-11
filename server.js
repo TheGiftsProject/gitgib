@@ -50,7 +50,7 @@ app.get('/getScore', function(req, res) {
   }
 });
 
-app.get('/debug/flushall', function(req, res) {
+app.get('/flushall', function(req, res) {
   db.client.flushall();
 });
 
