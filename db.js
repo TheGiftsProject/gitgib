@@ -16,12 +16,11 @@ DB.prototype = {
     client.exists(key, function (err, exists) {
       client.set(key, score);
       publisher.publish("score", key+"|"+score);
-      markUpdatedOrFetched(client, key, score, exists);
+      markUpdatedOrFetched(client, key, score);
       cb()
     });
   },
   getScore: function (key, callback) {
-    var me = this;
     var client = this.client;
     function result(err, value) {
       if (value === null) {
@@ -32,7 +31,7 @@ DB.prototype = {
         callback(err, value);
       }
     }
-    me.client.get(key, result);
+    client.get(key, result);
   },
   keyToHash: function(key) {
     var temp = key.split("/");
@@ -45,22 +44,13 @@ DB.prototype = {
   getNextProcessingChunk: function (amount, cb) {
     amount = amount || 60;
     var client = this.client;
-    client.zrangebyscore(QUEUE_NAME, "+inf", 0, "LIMIT", 0, amount, function (err, res) {
-      if(res.length < amount){
-        client.zrevrangebyscore(QUEUE_NAME, "+inf", 0, "LIMIT", 0, amount-res.length, function(err, more_res) {
-
+    client.zrangebyscore(QUEUE_NAME, 0, "+inf", "LIMIT", 0, amount, function (err, res) {
+      if(res.length < amount) {
+        client.zrevrangebyscore(QUEUE_NAME, 0, "-inf", "LIMIT", 0, (amount-res.length), function(err, more_res) {
           var totalWork = more_res.concat(res);
-          if(totalWork.length && res.length===0) {
-            console.log("no work at all but some update work");
-          } else if(totalWork.length) {
-            console.log("got only fetch work");
-          } else {
-            console.log("no work at all");
-          }
           cb(totalWork);
         });
       } else {
-        console.log("got enough fetch work", res);
         cb(res);
       }
     });
@@ -68,6 +58,17 @@ DB.prototype = {
 };
 
 
+
+function updateAccessCounter(client, key) {
+  client.zincrby(QUEUE_NAME, -1, key); //We are storing the fetch "queue" in reverse order..
+}
+function queueForFetching(client, key) {
+  client.zincrby(QUEUE_NAME, 1, key);
+}
+
+function markUpdatedOrFetched(client, key, cb) {
+  client.zrem(QUEUE_NAME, key, cb);
+}
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=PRIVATE-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 function getRedis() {
@@ -80,17 +81,6 @@ function getRedis() {
     client = redis.createClient();
   }
   return client;
-}
-function updateAccessCounter(client, key) {
-  client.zincrby(QUEUE_NAME, -1, key); //We are storing the fetch "queue" in reverse order..
-}
-
-function queueForFetching(client, key) {
-  client.zincrby(QUEUE_NAME, 1, key);
-}
-
-function markUpdatedOrFetched(client, key, exists, cb) {
-  client.zrem(QUEUE_NAME, key, cb);
 }
 
 

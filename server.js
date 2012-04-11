@@ -1,7 +1,7 @@
 var express = require('express');
 var io = require('socket.io');
 var DB = require("./db.js").DB;
-var url = require('url');
+var url_helper = require('url');
 
 var port = process.env.PORT || 3000;
 
@@ -42,8 +42,7 @@ app.get('/:user/:repo', function(req, res){
 });
 
 app.get('/getScore', function(req, res) {
-  var hash = urlToHash(req.params.url);
-  console.log(hash);
+  var hash = urlToHash(req.query.url);
   if(hash) {
     getScore(hash.user, hash.repo, res);
   }
@@ -53,7 +52,7 @@ function urlToHash(url) {
   var valid = url.match(/^(https|http)?\:\/\/(www.)?github.com\/[^\/]+\/[^\/]+\/?$/);
   var result = {};
   if (valid) {
-    var info = url.parse(url),
+    var info = url_helper.parse(url),
         path = info.pathname.split("/"),
         user = path[1],
         name = path[2];
@@ -68,11 +67,12 @@ function urlToHash(url) {
   return result;
 }
 
-function getScore(name, repo, res) {
-  db.getScore(db.hashToKey({name: req.params.user, repo: req.params.repo}), function(err, value) {
+function getScore(user, repo, res) {
+  db.getScore(db.hashToKey({name: user, repo: repo}), function(err, value) {
     res.json({
       user: user,
       repo: repo,
+      repoHash: user + "/" + repo,
       score: value
     });
   })

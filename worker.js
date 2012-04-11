@@ -36,7 +36,6 @@ function getMoreWork() {
     res.map(function (item) {
       repoInfo = db.keyToHash(item);
       getScore(repoInfo.name, repoInfo.repo, function (user,repo,score) {
-        console.log(user,repo,score);
         gotScore(db.hashToKey({name: user, repo: repo}), score);
       });
     });
