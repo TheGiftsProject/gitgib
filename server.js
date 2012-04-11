@@ -50,6 +50,10 @@ app.get('/getScore', function(req, res) {
   }
 });
 
+app.get('/debug/flushall', function(req, res) {
+  db.client.flushall();
+});
+
 function urlToHash(url) {
   var valid = url.match(/^(https|http)?\:\/\/(www.)?github.com\/[^\/]+\/[^\/]+\/?$/);
   var result = {};
