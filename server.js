@@ -21,7 +21,9 @@ io.sockets.on('connection', function (socket) {
   db.publisher.subscribe("score");
   db.publisher.on("message", function(channel, data) {
     var info = data.split("|");
-    socket.emit(info[0], info[1]);
+    if(info[1] !== '-1') {
+      socket.emit(info[0], info[1]);
+    }
   });
 });
 

@@ -25,7 +25,7 @@ DB.prototype = {
     function result(err, value) {
       if (value === null) {
         queueForFetching(client, key);
-        callback(err, -1);
+        callback(err, "-1");
       } else {
         updateAccessCounter(client, key);
         callback(err, value);

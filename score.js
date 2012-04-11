@@ -54,7 +54,7 @@ function getWatchersScore(watchers) {
 function getScore(username, repo, callback) {
   repoHelper.getInfo(username, repo, function (info) {
     if(info.error) {
-      callback(-1);
+      callback("-1");
       return;
     }
     var lcdRank = getLCDRank(info.lastCommitDate);
