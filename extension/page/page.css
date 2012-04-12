@@ -10,6 +10,7 @@
     font-weight: normal;
     font-style: normal;
     line-height: normal;
-    font-family: 'RaphaelIcons';
+    font-family: 'RaphaelIcons', serif;
     text-decoration: none;
+    display: inherit;
 }

@@ -9,7 +9,7 @@
     "background_page": "extension.html",
     "content_scripts": [{
         "matches": ["<all_urls>"],
-        "js": ["common/jquery.min.js", "page/gitgib_ui.js", "page/page.js"],
+        "js": ["page/gitgib_ui.js", "page/page.js"],
         "run_at": "document_start",
         "css": ["page/page.css"]
     }],

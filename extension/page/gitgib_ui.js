@@ -2,22 +2,17 @@ var GitGib = {};
 GitGib.UI = {};
 
 GitGib.UI.scoreGitHubRepository = function (score, anchor) {
-  console.log(anchor);
-  $(anchor).append(GitGib.UI.createScoreFragment(score));
+  anchor.appendChild(GitGib.UI.createScoreFragment(score));
 };
 
 GitGib.UI.createScoreFragment = function (score) {
-  var spanFragment = $("<span title='Score:"+score+"'>");
-  spanFragment.addClass("gitgib_score");
-  spanFragment.text("U");
-
+  var span = document.createElement ("div");
+  span.setAttribute("title", "Score:"+score);
+  span.classList.add("gitgib_score");
+  span.innerText = "U";
   var color = GitGib.UI.calculateColor(score);
-  spanFragment.css({
-    "color": "rgb("+color.R+","+color.G+","+color.B+")"
-  });
-  console.log("rgb("+color.R+","+color.G+","+color.B+");");
-
-  return spanFragment;
+  span.style.color = "rgb("+color.R+","+color.G+","+color.B+")";
+  return span;
 };
 
 
