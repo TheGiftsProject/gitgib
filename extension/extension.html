@@ -9,19 +9,18 @@
       console.assert(port.name == "gitgib");
       gitgib = new GitGib();
       port.onMessage.addListener(function (msg) {
-        for (i in msg.anchors) {
+        for (var i in msg.anchors) {
           var anchor = msg.anchors[i];
-          var isRepo = msg.isRepo || false;
-          getScore(anchor, isRepo, function (anchor, score, isRepo) {
-            port.postMessage({index: anchor.index, score: score, isRepo: isRepo});
+          getScore(anchor, function (anchor, score) {
+            port.postMessage({index: anchor.index, score: score});
           });
         }
       });
     });
 
-    function getScore(anchor, isRepo, cb) {
-      gitgib.getScore(anchor.url, isRepo, function (score) {
-        cb(anchor, score, isRepo);
+    function getScore(anchor, cb) {
+      gitgib.getScore(anchor.url, function (score) {
+        cb(anchor, score);
       });
     }
   </script>

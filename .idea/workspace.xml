@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc455c48-f067-4db4-8a72-c036ccfcd7e9" name="Default" comment="removing page rand">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/extension/page/page.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/extension/page.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/extension/gitgib_base.js" afterPath="$PROJECT_DIR$/extension/common/gitgib_base.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/extension/gitgib_ui.js" afterPath="$PROJECT_DIR$/extension/page/gitgib_ui.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/extension/jquery.min.js" afterPath="$PROJECT_DIR$/extension/common/jquery.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extension/common/gitgib_base.js" afterPath="$PROJECT_DIR$/extension/common/gitgib_base.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extension/extension.html" afterPath="$PROJECT_DIR$/extension/extension.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extension/manifest.json" afterPath="$PROJECT_DIR$/extension/manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extension/page/gitgib_ui.js" afterPath="$PROJECT_DIR$/extension/page/gitgib_ui.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/extension/page/page.js" afterPath="$PROJECT_DIR$/extension/page/page.js" />
     </list>
     <ignored path="gitgib.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +31,7 @@
       <file leaf-file-name="gitgib_base.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/extension/common/gitgib_base.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="12" selection-start="474" selection-end="474" vertical-scroll-proportion="0.0">
+            <state line="15" column="66" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -52,10 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="page.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/extension/page/page.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="13" selection-start="77" selection-end="77" vertical-scroll-proportion="0.14232673">
+            <state line="22" column="27" selection-start="632" selection-end="632" vertical-scroll-proportion="0.22772278">
               <folding />
             </state>
           </provider>
@@ -64,16 +58,34 @@
       <file leaf-file-name="gitgib_ui.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/extension/page/gitgib_ui.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="41" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0">
+            <state line="3" column="31" selection-start="44" selection-end="65" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jade" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/index.jade">
+      <file leaf-file-name="db.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="66" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
+            <state line="6" column="42" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manifest.json" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/extension/manifest.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="22" selection-start="424" selection-end="424" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="extension.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/extension/extension.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="8" selection-start="452" selection-end="452" vertical-scroll-proportion="-6.928571">
               <folding />
             </state>
           </provider>
@@ -92,8 +104,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/repo.js" />
         <option value="$PROJECT_DIR$/extension/inject.js" />
         <option value="$PROJECT_DIR$/worker.js" />
@@ -102,12 +112,14 @@
         <option value="$PROJECT_DIR$/extension/background.html" />
         <option value="$PROJECT_DIR$/extension/gitgib_base.js" />
         <option value="$PROJECT_DIR$/extension/manifest.json" />
-        <option value="$PROJECT_DIR$/extension/page/page.js" />
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/views/index.jade" />
-        <option value="$PROJECT_DIR$/extension/page/gitgib_ui.js" />
         <option value="$PROJECT_DIR$/extension/page/page.css" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/extension/extension.html" />
+        <option value="$PROJECT_DIR$/extension/common/gitgib_base.js" />
+        <option value="$PROJECT_DIR$/extension/page/gitgib_ui.js" />
+        <option value="$PROJECT_DIR$/extension/page/page.js" />
       </list>
     </option>
   </component>
@@ -189,6 +201,42 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gitgib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gitgib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="extension" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="page" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gitgib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gitgib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="extension" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope">
@@ -212,9 +260,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="GoToClass.includeJavaFiles" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -329,7 +377,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23509075" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23473054" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23592815" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -404,11 +452,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/extension/common/jquery.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/repo.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="4" selection-start="591" selection-end="591" vertical-scroll-proportion="0.0" />
@@ -416,98 +459,93 @@
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/ECMAScript.js2">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="23" selection-start="594" selection-end="594" vertical-scroll-proportion="0.18495575">
-          <folding />
-        </state>
+        <state line="11" column="23" selection-start="594" selection-end="594" vertical-scroll-proportion="0.18495575" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/express/node_modules/connect/lib/middleware/bodyParser.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="41" selection-start="975" selection-end="975" vertical-scroll-proportion="0.33294392">
-          <folding />
-        </state>
+        <state line="45" column="41" selection-start="975" selection-end="975" vertical-scroll-proportion="0.33294392" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/worker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="12" selection-start="1114" selection-end="1114" vertical-scroll-proportion="-11.346154">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="10" selection-start="631" selection-end="631" vertical-scroll-proportion="0.42172897">
-          <folding />
-        </state>
+        <state line="44" column="12" selection-start="1114" selection-end="1114" vertical-scroll-proportion="-11.346154" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/score.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="17" selection-start="1228" selection-end="1236" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extension/page/page.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="184" selection-end="184" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extension/extension.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="37" selection-start="837" selection-end="837" vertical-scroll-proportion="-14.25">
-          <folding />
-        </state>
+        <state line="53" column="17" selection-start="1228" selection-end="1236" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="694" selection-end="694" vertical-scroll-proportion="-18.26923">
+        <state line="25" column="0" selection-start="694" selection-end="694" vertical-scroll-proportion="-18.26923" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="12" selection-start="76" selection-end="76" vertical-scroll-proportion="0.023514852">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/extension/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="22" selection-start="424" selection-end="424" vertical-scroll-proportion="0.30569306">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extension/common/gitgib_base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="12" selection-start="474" selection-end="474" vertical-scroll-proportion="0.0">
+        <state line="13" column="22" selection-start="424" selection-end="424" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/index.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="66" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/extension/page/gitgib_ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="41" selection-start="616" selection-end="616" vertical-scroll-proportion="0.0">
+        <state line="8" column="66" selection-start="301" selection-end="301" vertical-scroll-proportion="0.023514852">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/extension/page/page.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="26" selection-start="618" selection-end="618" vertical-scroll-proportion="0.0">
+        <state line="13" column="26" selection-start="618" selection-end="618" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="42" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/extension/extension.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="77" selection-end="77" vertical-scroll-proportion="0.14232673">
+        <state line="11" column="8" selection-start="452" selection-end="452" vertical-scroll-proportion="-6.928571">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extension/common/gitgib_base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="66" selection-start="592" selection-end="592" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/socket.io/node_modules/socket.io-client/node_modules/uglify-js/tmp/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5677" column="28" selection-start="148955" selection-end="148955" vertical-scroll-proportion="-0.048494983">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extension/page/gitgib_ui.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="31" selection-start="44" selection-end="65" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extension/page/page.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="27" selection-start="632" selection-end="632" vertical-scroll-proportion="0.22772278">
           <folding />
         </state>
       </provider>

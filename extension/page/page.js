@@ -1,48 +1,30 @@
 $(document).ready(function () {
   var port = chrome.extension.connect({name: "gitgib"});
-  var anchors = $("a[href*='github.com'], a.js-current-repository");
-  var el = getElement();
-
-
-  var arr = jQuery.makeArray(anchors.map(function (i, v) {
-    return {url: v.getAttribute("href"), index: i};
-  }));
-  port.postMessage({anchors: arr});
-
-  port.onMessage.addListener(function (msg) {
-    var element = anchors[msg.index],
-      score = msg.score;
-    if (msg.isRepo) {
-      $('#gitgib_repo_spinner').remove();
-      element = $(element).parent().parent();
-    }
-
-    GitGib.UI.scoreGitHubRepository(score, element);
+  var anchors = $("a").filter(function (index) {
+    return this.href.indexOf("github.com") >= 0
   });
 
-  if (document.location.href.match("github.com")) {
-    if (el && el.item) {
-      var url = "https://github.com" + el.item.attr('href'),
-        loading = $("<img id='gitgib_repo_spinner' src='http://www.nzta.govt.nz/traffic/ui/img/loading.gif'/>");
-      el.item.append(loading);
-      port.postMessage({anchors: [
-        {url: url, index: el.index}
-      ], isRepo: true});
-    }
+  var arr = jQuery.makeArray(anchors.map(function (i, v) {
+    return {url: v.href, index: i};
+  }));
+
+  console.dir(arr);
+
+  bindListenerForResults(port, anchors);
+
+  port.postMessage({anchors: arr});
+
+
+  function bindListenerForResults(port, anchors) {
+    port.onMessage.addListener(function (msg) {
+      var element = anchors[msg.index],
+        score = msg.score;
+      $('#gitgib_repo_spinner').remove();
+      GitGib.UI.scoreGitHubRepository(score, $(element));
+    });
   }
 
-  function getElement() {
-    if (anchors.length - 1 < 0) return null;
-
-    var temp = anchors.map(function (i, v) {
-      if (v.className === 'js-current-repository' && v.nodeName === "A") {
-        return {item: $(v), index: i};
-      }
-    });
-    if (temp.length) {
-      return temp[0];
-    } else {
-      return null;
-    }
+  function _insideGitHub() {
+    return document.location.href.match("github.com");
   }
 });

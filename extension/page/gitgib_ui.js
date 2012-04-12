@@ -2,11 +2,12 @@ var GitGib = {};
 GitGib.UI = {};
 
 GitGib.UI.scoreGitHubRepository = function (score, anchor) {
+  console.log(anchor);
   $(anchor).append(GitGib.UI.createScoreFragment(score));
 };
 
 GitGib.UI.createScoreFragment = function (score) {
-  var spanFragment = $("<span>");
+  var spanFragment = $("<span title='Score:"+score+"'>");
   spanFragment.addClass("gitgib_score");
   spanFragment.text("U");
 
