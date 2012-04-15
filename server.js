@@ -38,6 +38,7 @@ io.sockets.on('connection', function (socket) {
 
 app.configure( function(){
   app.enable("jsonp callback");
+  app.use(express.static(__dirname + '/public'));
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   app.set('view options', { layout: false });
 });
@@ -65,9 +66,9 @@ app.get('/flushall', function(req, res) {
 });
 
 function urlToHash(url) {
-  var valid = url.match(/^(https|http)?\:\/\/(www.)?github.com\/[^\/]+\/[^\/]+\/?$/);
+
   var result = {};
-  if (valid) {
+  if (isValid(url)) {
     var info = url_helper.parse(url),
         path = info.pathname.split("/"),
         user = path[1],
@@ -81,6 +82,16 @@ function urlToHash(url) {
     }
   }
   return result;
+}
+function isValid(url) {
+  var info = url_helper.parse(url);
+  var path = info.pathname.split("/");
+
+  return url.match(/^(https|http)?\:\/\/(www.)?github.com\/[^\/]+\/[^\/]+\/?$/) &&
+    path.length === 3 &&
+    path[2].indexOf('.git') === -1 &&
+    path[2] !== 'terms' &&
+    path[2] !== 'privacy'
 }
 
 function getScore(user, repo, res) {

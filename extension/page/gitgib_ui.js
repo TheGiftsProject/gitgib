@@ -17,8 +17,8 @@ GitGib.UI.createScoreFragment = function (score) {
 
 
 GitGib.UI.calculateColor = function (score) {
-  var R=Math.ceil((255*(100-score))/100);
-  var G=Math.ceil((255*score)/100);
-  var B=0;
+  var R = Math.ceil((255*(100-score))/100);
+  var G = Math.ceil((255*score)/100);
+  var B = 0;
   return {R:R,G:G,B:B};
 };
