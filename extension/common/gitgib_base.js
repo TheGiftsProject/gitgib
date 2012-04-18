@@ -1,5 +1,5 @@
 function GitGib() {
-  this.socket = io.connect("gitgib.herokuapp.com", { port: 80 });
+  this.socket = io.connect("gitgib.herokuapp.com");
 }
 
 GitGib.prototype.handleScore = function(data, cb) {

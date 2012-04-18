@@ -15,7 +15,6 @@ document.addEventListener( "DOMContentLoaded", function () {
       arr.push({url: anchor.href, index: counter++});
     }
   }
-  console.dir(arr);
 
   bindListenerForResults(port, filteredAnchors);
   port.postMessage({anchors: arr});
