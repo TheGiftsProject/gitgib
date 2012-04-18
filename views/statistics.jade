@@ -1,0 +1,23 @@
+script
+  var socket = io.connect();
+  socket.on('fetchQueue', function(data) {
+    console.dir("fetchQueue", data);
+  });
+
+  socket.on('updateQueue', function(data) {
+    console.log("updateQueue", data);
+  });
+
+  socket.on('queueSize', function(data) {
+    console.log("queueSize", data);
+  });
+
+
+.queue
+  header
+    h1 Queue
+  ul
+    each item, i in queue
+      li #{item}
+
+.total_queue= totalKeys
