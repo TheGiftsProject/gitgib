@@ -6,6 +6,7 @@ function DB(errorHandler) {
   this.client = getRedis(redis);
   this.client.on("error", errorHandler || console.log);
   this.publisher = getRedis(redis);
+  this.queue_name = QUEUE_NAME;
 }
 
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=PROTOTYPE-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -14,14 +15,18 @@ DB.prototype = {
     var client = this.client;
     var publisher = this.publisher;
     client.exists(key, function (err, exists) {
+      if (err) {
+        console.error("error in setScore", err, exists);
+      }
       client.set(key, score);
-      publisher.publish("score", key+"|"+score);
+      publisher.publish("score", key + "|" + score);
       markUpdatedOrFetched(client, key, score);
-      cb()
+      cb();
     });
   },
   getScore: function (key, callback) {
     var client = this.client;
+
     function result(err, value) {
       if (value === null) {
         queueForFetching(client, key);
@@ -31,39 +36,31 @@ DB.prototype = {
         callback(err, value);
       }
     }
+
     client.get(key, result);
   },
-  keyToHash: function(key) {
+  keyToHash: function (key) {
     var temp = key.split("/");
-    return {name:temp[0], repo:temp[1]}
+    return {name: temp[0], repo: temp[1]}
   },
-  hashToKey: function(hash) {
-    return hash.name+"/"+hash.repo;
+  hashToKey: function (hash) {
+    return hash.name + "/" + hash.repo;
   },
 
   getNextProcessingChunk: function (amount, cb) {
-    amount = amount || 60;
     var client = this.client;
-    client.zrangebyscore(QUEUE_NAME, 0, "+inf", "LIMIT", 0, amount, function (err, res) {
-      if(res.length < amount) {
-        client.zrevrangebyscore(QUEUE_NAME, 0, "-inf", "LIMIT", 0, (amount-res.length), function(err, more_res) {
-          var totalWork = more_res.concat(res);
-          cb(totalWork);
-        });
-      } else {
-        cb(res);
-      }
+    client.zrangebyscore(QUEUE_NAME, "-inf", "+inf", "LIMIT", 0, amount, function (err, res) {
+      cb(res);
     });
   }
 };
 
 
-
 function updateAccessCounter(client, key) {
-  client.zincrby(QUEUE_NAME, -1, key); //We are storing the fetch "queue" in reverse order..
+  client.zincrby(QUEUE_NAME, 1, key); //We are storing the fetch "queue" in reverse order..
 }
 function queueForFetching(client, key) {
-  client.zincrby(QUEUE_NAME, 1, key);
+  client.zincrby(QUEUE_NAME, -1, key);
 }
 
 function markUpdatedOrFetched(client, key, cb) {

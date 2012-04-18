@@ -1,5 +1,5 @@
 function GitGib() {
-  this.socket = io.connect("localhost", { port: 3000 });
+  this.socket = io.connect("gitgib.herokuapp.com", { port: 80 });
 }
 
 GitGib.prototype.handleScore = function(data, cb) {
@@ -26,7 +26,7 @@ GitGib.prototype.getScore = function (url, cb) {
         me.handleScore(JSON.parse(xhr.responseText), cb);
       }
     };
-    xhr.open("GET", "http://localhost:3000/getScore?url=" + encodeURIComponent(url), true);
+    xhr.open("GET", "http://gitgib.herokuapp.com/getScore?url=" + encodeURIComponent(url), true);
     xhr.send();
 
   }

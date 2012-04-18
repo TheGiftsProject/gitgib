@@ -14,8 +14,7 @@
         "css": ["page/page.css"]
     }],
     "minimum_chrome_version": "15",
-    "homepage_url": "http://gitgib.herokuapp.com",
-    "update_url": "http://gitgib.herokuapp.com/update.xml",
+    "homepage_url": "http://www.github.com/thegiftsproject/gitgib",
     "permissions": [
         "tabs",
         "https://github.com/api/v2/json/",
