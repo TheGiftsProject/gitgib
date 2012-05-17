@@ -6,11 +6,16 @@ document.addEventListener( "DOMContentLoaded", function () {
     filteredAnchors = [];
   var anchor = null,
     position = null,
-    counter = 0;
+    counter = 0,
+    inGitHub = location.href.indexOf("github.com") >= 0;
   for(var i=0; i<anchors.length; i++) {
     anchor = anchors[i];
+    console.log(anchor, anchor.html);
     position = window.getComputedStyle(anchor,null).getPropertyValue("position");
-    if(anchor.href.indexOf("github.com") >= 0 && position!=="absolute") {
+    if (inGitHub && (anchor.classList.contains("minibutton") || anchor.href.indexOf("#readme") > 0 || anchor.hasAttribute("highlight"))){
+        continue;
+    }
+    if(anchor.href.indexOf("github.com") >= 0 && position !== "absolute") {
       filteredAnchors.push(anchor);
       arr.push({url: anchor.href, index: counter++});
     }
