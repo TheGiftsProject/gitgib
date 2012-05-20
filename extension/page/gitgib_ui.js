@@ -1,20 +1,35 @@
 var GitGib = {};
-GitGib.UI = {};
-
-GitGib.UI.scoreGitHubRepository = function (score, anchor) {
-  anchor.appendChild(GitGib.UI.createScoreFragment(score));
+GitGib.UI = {
+    characters: {
+        regular: "",
+        small: ""
+    }
 };
 
-GitGib.UI.createScoreFragment = function (score) {
-  var span = document.createElement ("div");
-  span.setAttribute("title", "Score:"+score);
+GitGib.UI.scoreGitHubRepository = function (score, anchor) {
+  anchor.appendChild(GitGib.UI.createScoreFragment(score,anchor));
+};
+
+GitGib.UI.createScoreFragment = function (score, anchor) {
+  var span = document.createElement("div");
+  span.setAttribute("title", "score: " + score);
   span.classList.add("gitgib_score");
-  span.innerText = "U";
+  span.innerText = GitGib.UI.characters.regular;
+  if (GitGib.UI.isSmallText(anchor)){
+      span.innerText = GitGib.UI.characters.small;
+  }
   var color = GitGib.UI.calculateColor(score);
   span.style.color = "rgb("+color.R+","+color.G+","+color.B+")";
   return span;
 };
 
+GitGib.UI.isSmallText = function(anchor) {
+    try{
+        return parseInt(document.defaultView.getComputedStyle(anchor, null).fontSize) < 17;
+    } catch(e) {
+        return false;
+    }
+};
 
 GitGib.UI.calculateColor = function (score) {
   var R = Math.ceil((255*(100-score))/100);

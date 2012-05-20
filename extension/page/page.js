@@ -6,11 +6,11 @@ document.addEventListener( "DOMContentLoaded", function () {
     filteredAnchors = [];
   var anchor = null,
     position = null,
-    counter = 0;
+    counter = 0,
+    inGitHub = location.href.indexOf("github.com") >= 0;
   for(var i=0; i<anchors.length; i++) {
     anchor = anchors[i];
-    position = window.getComputedStyle(anchor,null).getPropertyValue("position");
-    if(anchor.href.indexOf("github.com") >= 0 && position!=="absolute") {
+    if(githubSpecialCase(anchor) && globalCase(anchor)) {
       filteredAnchors.push(anchor);
       arr.push({url: anchor.href, index: counter++});
     }
@@ -25,6 +25,17 @@ document.addEventListener( "DOMContentLoaded", function () {
       var score = msg.score;
       GitGib.UI.scoreGitHubRepository(score, element);
     });
+  }
+
+  function githubSpecialCase(anchor){
+    var inGitHub = location.href.indexOf("github.com") >= 0;
+    if (!inGitHub) return true;
+    return !(anchor.classList.contains("minibutton") || anchor.href.indexOf("#readme") > 0 || anchor.hasAttribute("highlight"));
+  }
+
+  function globalCase(anchor){
+      var position = window.getComputedStyle(anchor,null).getPropertyValue("position");
+      return anchor.href.indexOf("github.com") >= 0 && position !== "absolute";
   }
 
 }, false );

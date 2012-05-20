@@ -1,16 +1,20 @@
-@font-face {
-    font-family: 'RaphaelIcons';
-    src: url('chrome-extension://__MSG_@@extension_id__/assets/raphael.eot');
-    src: local('☺'), url('chrome-extension://__MSG_@@extension_id__/assets/raphael.woff') format('woff'), url('chrome-extension://__MSG_@@extension_id__/assets/raphael.ttf') format('truetype'), url('chrome-extension://__MSG_@@extension_id__/assets/raphael.svg#webfontjJTHv0E8') format('svg');
+@font-face{
+    font-family:'Octicons Regular';
+    src: url("https://a248.e.akamai.net/assets.github.com/fonts/octicons/octicons-regular-webfont.eot?v=2");
+    src: url("https://a248.e.akamai.net/assets.github.com/fonts/octicons/octicons-regular-webfont.eot?v=2#iefix") format("embedded-opentype"),url("https://a248.e.akamai.net/assets.github.com/fonts/octicons/octicons-regular-webfont.woff?v=2") format("woff"),url("https://a248.e.akamai.net/assets.github.com/fonts/octicons/octicons-regular-webfont.ttf?v=2") format("truetype"),url("https://a248.e.akamai.net/assets.github.com/fonts/octicons/octicons-regular-webfont.svg?v=2#newFontRegular") format("svg");
     font-weight: normal;
     font-style: normal;
 }
 
 .gitgib_score {
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Octicons Regular', serif;
     font-weight: normal;
     font-style: normal;
-    line-height: normal;
-    font-family: 'RaphaelIcons', serif;
+    display: inline-block;
     text-decoration: none;
-    display: inherit;
+    font-weight: normal;
+    line-height: normal;
+    margin-left: 3px;
+    font-size: 0.8em;
 }
